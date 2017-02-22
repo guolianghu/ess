@@ -1,0 +1,13 @@
+{
+  "name": "ess",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "streamifier": "*",
+    "request": "*",
+    "utf8": "*",
+    "multimap": "*",
+    "mime": "*",
+    "underscore": "*"
+  }
+}
