@@ -18,11 +18,12 @@ var config = require('./config');
 //debug
 var util = require('util');
 
-var AuthClient = function(req) {
+var AuthClient = function(req, cfg) {
     this.req = req;
-    this.public_key = config['ess_public_key'];
-    this.private_key = config['ess_private_key'];
-    this.proxy_suffix = config['proxy_suffix'];
+    cfg = Object.assign({}, cfg, config);
+    this.public_key = cfg['ess_public_key'];
+    this.private_key = cfg['ess_private_key'];
+    this.proxy_suffix = cfg['proxy_suffix'];
     this.authorization = "";
 };
 

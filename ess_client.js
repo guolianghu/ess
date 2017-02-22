@@ -4,9 +4,11 @@ var helper = require('./helper');
 var util = require('util');
 var fs = require('fs');
 
-var EssClient = function (bucket, private) {
-    this.bucket = bucket;
-    this.private = private;
+var EssClient = function (params) {
+    params = params || {};
+    this.params = params;
+    this.bucket = params.bucket;
+    this.private = params.private;
 };
 
 EssClient.prototype.GetObject = function (key, callback) {
@@ -14,7 +16,7 @@ EssClient.prototype.GetObject = function (key, callback) {
     var url_path_params = '/' + key;
 
     var req = new HttpRequest(method, url_path_params, this.bucket, key);
-    var client = new AuthClient(req);
+    var client = new AuthClient(req, this.params);
 
     if (this.private) {
         req.setHeader("Date", helper.GetDate());
@@ -37,7 +39,7 @@ EssClient.prototype.PutObject = function (key, file_path, callback) {
     var url_path_params = '/' + key;
 
     var req = new HttpRequest(method, url_path_params, this.bucket, key, file_path);
-    var client = new AuthClient(req);
+    var client = new AuthClient(req, this.params);
 
     if (this.private) {
         helper.md5AsBase64(file_path, function (md5) {
