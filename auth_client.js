@@ -20,10 +20,10 @@ var util = require('util');
 
 var AuthClient = function(req, cfg) {
     this.req = req;
-    cfg = Object.assign({}, cfg, config);
-    this.public_key = cfg['ess_public_key'];
-    this.private_key = cfg['ess_private_key'];
-    this.proxy_suffix = cfg['proxy_suffix'];
+    const mcfg = Object.assign({}, config, cfg);
+    this.public_key = mcfg['ess_public_key'];
+    this.private_key = mcfg['ess_private_key'];
+    this.proxy_suffix = mcfg['proxy_suffix'];
     this.authorization = "";
 };
 
