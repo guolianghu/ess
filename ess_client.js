@@ -74,8 +74,7 @@ EssClient.prototype.PutObject = function (key, file_path) {
         } else {
             client.SendRequest(callback);
         }
-    })
-
+    });
 };
 
 module.exports = EssClient;
