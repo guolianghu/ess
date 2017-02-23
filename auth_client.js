@@ -459,8 +459,8 @@ AuthClient.prototype.MakeAuth =  function() {
         var signature = this.Sign(this.private_key, utf8.encode(string_to_sign));
         this.authorization = this.Authorize(this.public_key, signature);
 
-        console.log(' ##### string_to_sign #####\n' + string_to_sign + '\n');
-        console.log(' ##### authorization #####\n' + this.authorization + '\n');
+        // console.log(' ##### string_to_sign #####\n' + string_to_sign + '\n');
+        // console.log(' ##### authorization #####\n' + this.authorization + '\n');
     }
 };
 

@@ -57,7 +57,7 @@ EssClient.prototype.PutObject = function (key, file_path) {
     var req = new HttpRequest(method, url_path_params, this.bucket, key, file_path);
     var client = new AuthClient(req, this.params);
 
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         var callback = function (err, rst) {
             if (err) {
                 return reject(err);
@@ -75,7 +75,6 @@ EssClient.prototype.PutObject = function (key, file_path) {
             client.SendRequest(callback);
         }
     });
-    
 };
 
 module.exports = EssClient;
