@@ -18,7 +18,7 @@ EssClient.prototype.GetObject = function (key) {
     var req = new HttpRequest(method, url_path_params, this.bucket, key);
     var client = new AuthClient(req, this.params);
 
-    return new Promise(function (reslove, reject) {
+    return new Promise(function (resolve, reject) {
         var callback = function (code, request) {
             if (code instanceof Error) {
                 return reject(code);
