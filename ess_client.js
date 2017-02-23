@@ -58,16 +58,11 @@ EssClient.prototype.PutObject = function (key, file_path) {
     var client = new AuthClient(req, this.params);
 
     return new Promise( (resolve, reject) => {
-        var callback = function (code, request) {
-            if (code instanceof Error) {
-                return reject(code);
+        var callback = function (err, rst) {
+            if (err) {
+                return reject(err);
             }
-
-            if (code !== 200) {
-                return reject(request);
-            }
-
-            resolve(request);
+            resolve(rst);
         }
 
         if (this.private) {

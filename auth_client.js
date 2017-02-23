@@ -384,14 +384,25 @@ AuthClient.prototype.PutFile = function(callback) {
         if (err) {
             return callback(err);
         }
-        var statusCode = response.statusCode;
-        var header = JSON.stringify(response.caseless.dict) || "";
-        var _body = body || "\"\"";
 
-        var retraw = "{\"statusCode\":" +  response.statusCode +", \"header\":" +  header + ", \"body\":" +  _body + "}";
-        var ret = retraw.replace(/[\n\t]/g, "");
-        console.log(' ##### return value ##### \n' + ret + '\n');
-        callback(JSON.parse(ret));
+        // var statusCode = response.statusCode;
+        // var header = JSON.stringify(response.caseless.dict) || "";
+        // var _body = body || "\"\"";
+        //
+        // var retraw = "{\"statusCode\":" +  response.statusCode +", \"header\":" +  header + ", \"body\":" +  _body + "}";
+        // var ret = retraw.replace(/[\n\t]/g, "");
+        // console.log(' ##### return value ##### \n' + ret + '\n');
+        // callback(JSON.parse(ret));
+        var rst = null;
+        if (body) {
+            try{
+                rst = JSON.parse(body);
+            }
+            catch (e) {
+                return callback(e);
+            }
+        }
+        callback(null, rst);
     }
     fs.createReadStream(this.req.file_path).pipe(request(options, put_cb));
 };
