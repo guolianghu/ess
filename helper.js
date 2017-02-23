@@ -115,7 +115,7 @@ exports.md5AsBase64 = function (path, callback) {
 
     rs.on('end', function () {
         var md5 = new Buffer(hash.digest()).toString('base64');
-        console.log(' #####' + path + " md5 #####\n" + md5 + '\n');
+        // console.log(' #####' + path + " md5 #####\n" + md5 + '\n');
         callback(md5);
     });
 
