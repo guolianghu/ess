@@ -87,7 +87,7 @@ AuthClient.prototype.GetFile = function(callback) {
 
     request.get(options).on('response', function(response) {
         var statusCode = response.statusCode;
-        var header = JSON.stringify(response.headers) || ""; 
+        var header = JSON.stringify(response.headers) || "";
 
         var retraw = "{\"statusCode\":" +  response.statusCode +", \"header\":" +  header + "}";
         var ret = retraw.replace(/[\n\t]/g, "");

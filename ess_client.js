@@ -11,19 +11,33 @@ var EssClient = function (params) {
     this.private = params.private;
 };
 
-EssClient.prototype.GetObject = function (key, callback) {
+EssClient.prototype.GetObject = function (key) {
     var method = 'GET';
     var url_path_params = '/' + key;
 
     var req = new HttpRequest(method, url_path_params, this.bucket, key);
     var client = new AuthClient(req, this.params);
 
-    if (this.private) {
-        req.setHeader("Date", helper.GetDate());
-        client.SendRequest(callback);
-    } else {
-        client.SendRequest(callback);
-    }
+    return new Promise(function (reslove, reject) {
+        var callback = function (code, request) {
+            if (code instanceof Error) {
+                return reject(code);
+            }
+
+            if (code !== 200) {
+                return reject(request);
+            }
+
+            resolve(request);
+        }
+
+        if (this.private) {
+            req.setHeader("Date", helper.GetDate());
+            client.SendRequest(callback);
+        } else {
+            client.SendRequest(callback);
+        }
+    });
 };
 
 EssClient.prototype.GetAndSaveObject = function (key, file_path) {
