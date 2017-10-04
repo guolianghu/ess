@@ -7,7 +7,7 @@
     "request": "*",
     "utf8": "*",
     "multimap": "*",
-    "mime": "*",
+    "mime": "^1.0.0",
     "underscore": "*"
   }
 }
